@@ -26,7 +26,7 @@ class CheckProfileId
             // Decodifica el token (por ejemplo, usando JWT)
             $decodedToken = JWTAuth::parseToken()->getPayload(); // Decodificar el token
             // Verifica el valor del id_profile en el token decodificado
-            if ($decodedToken->get('user')->id_profile === 1 ) {
+            if ($decodedToken->get('user')['id_profile'] === 1 ) {
                 return $next($request);
             }
         }
