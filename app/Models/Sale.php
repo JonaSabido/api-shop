@@ -12,13 +12,21 @@ class Sale extends Model
         'id_user',
         'total',
         'sale_date',
+        'subtotal',
+        'discount_rate'
     ];
     public function user()
     {
-        return $this->hasOne(User::class, 'id', 'id_user');
+        return $this->hasOne(User::class, 'id', 'id_user')->select(['id', 'name', 'last_name', 'nick', 'email']);
     }
 
-    public function details(){
+    public function details()
+    {
         return $this->hasMany(SaleDetail::class, 'id_sale', 'id');
+    }
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class, 'id_sale', 'id')->select(['id', 'sale_hour_date', 'amount', 'street', 'status']);
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleDetailController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\InfoController;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\CheckProfileId;
 use App\Http\Middleware\CheckIsActive;
@@ -45,10 +46,21 @@ Route::middleware(Authenticate::class, CheckProfileId::class, CheckIsActive::cla
 Route::middleware(Authenticate::class, CheckProfileId::class, CheckIsActive::class)->delete('categories/{id}', 'App\Http\Controllers\CategoryController@destroy');
 
 
-
-
 Route::middleware(Authenticate::class)->resource('sales', SaleController::class);
 Route::middleware(Authenticate::class)->resource('saledetails', SaleDetailController::class);
+
+Route::middleware(Authenticate::class, CheckProfileId::class, CheckIsActive::class)->get('data/balance', 'App\Http\Controllers\InfoController@getBalance');
+Route::middleware(Authenticate::class, CheckProfileId::class, CheckIsActive::class)->get('data/balance/sale', 'App\Http\Controllers\InfoController@getBalanceSaleToday');
+Route::middleware(Authenticate::class, CheckProfileId::class, CheckIsActive::class)->get('data/sales/week', 'App\Http\Controllers\InfoController@getNumberSalesWeek');
+Route::middleware(Authenticate::class, CheckProfileId::class, CheckIsActive::class)->get('data/products/moresales', 'App\Http\Controllers\InfoController@getMoreSalesProducts');
+Route::middleware(Authenticate::class, CheckProfileId::class, CheckIsActive::class)->get('data/latestusers', 'App\Http\Controllers\InfoController@getLatestUsers');
+
+
+
+
+
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

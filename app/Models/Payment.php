@@ -5,21 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SaleDetail extends Model
+class Payment extends Model
 {
     use HasFactory;
     protected $fillable = [
         'id_sale',
-        'id_product',
+        'sale_hour_date',
         'amount',
-        'total',
+        'street',
+        'status'
     ];
     public function sale()
     {
-        return $this->hasOne(Sale::class, 'id', 'id_sale');
-    }
-    public function product()
-    {
-        return $this->hasOne(Product::class, 'id', 'id_product')->select(['id','name']);
+        return $this->hasOne(Sale::class, 'id', 'id_sale')->select(['id', 'id_user', 'total', 'sale_date']);
     }
 }

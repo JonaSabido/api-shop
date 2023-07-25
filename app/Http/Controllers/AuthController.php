@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+
+date_default_timezone_set('America/Mexico_City');
+
 class AuthController extends Controller {
   /**
      * Create a new AuthController instance.

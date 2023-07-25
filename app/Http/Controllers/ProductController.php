@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\Product;
 
+date_default_timezone_set('America/Mexico_City');
+
+
 class ProductController extends CatalogController
 {
     public function clazz()

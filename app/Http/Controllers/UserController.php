@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\User;
 
+date_default_timezone_set('America/Mexico_City');
+
 class UserController extends CatalogController
 {
     public function clazz()

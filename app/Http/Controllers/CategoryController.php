@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\Category;
 
+date_default_timezone_set('America/Mexico_City');
+
 class CategoryController extends CatalogController
 {
     public function clazz()
